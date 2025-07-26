@@ -9,7 +9,7 @@ Google Analytics: [analytics.google.com](https://analytics.google.com)
 
 Microsoft Clarity: [clarity.microsoft.com](https://clarity.microsoft.com)
 
-Termageddon: [Do It Yourself with 10% off your first year](https://go.sixfive.io/termageddon) 
+Termageddon: [Do It Yourself with 10% off your first year](https://go.sixfive.io/termageddon) OR [SixFive guided concierge set up and configuration](https://sixfive.io/products/wordpress/legals/) (we'll take care of configuration with you, and installation for you).
 
 ## Google Tag Manager Config
 GTM Container to import [https://github.com/65/free-scripts/blob/main/gtm/consent_mode_v2.json](https://github.com/65/free-scripts/blob/main/gtm/consent_mode_v2.json) 
@@ -27,8 +27,7 @@ Publish the container
 
 Pop the GTM embed code on to your website according to instructions. 
 
-If you use Wordpress we recommend [GTM4WP by Thomas Geiger](https://wordpress.org/plugins/duracelltomi-google-tag-manager/)
-five.io/termageddon) OR [SixFive guided concierge set up and configuration](https://sixfive.io/products/wordpress/legals/)
+If you use Wordpress we recommend [GTM4WP by Thomas Geiger](https://wordpress.org/plugins/duracelltomi-google-tag-manager/) 
 
 Just ** Above** your GTM script insert the following, this allows UserCentrics to fire before GTM and alows UserCentrics to have visibility and control of other javascript. 
 ```
