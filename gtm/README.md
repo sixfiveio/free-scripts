@@ -4,9 +4,12 @@ Video:
 
 ## Required platforms 
 Google Tag Manager: [tagmanager.google.com](https://tagmanager.google.com)
+
 Google Analytics: [analytics.google.com](https://analytics.google.com)
+
 Microsoft Clarity: [clarity.microsoft.com](https://clarity.microsoft.com)
-Termageddon: [Do It Yourself with 10% off your first year](https://go.six
+
+Termageddon: [Do It Yourself with 10% off your first year](https://go.sixfive.io/termageddon) 
 
 ## Google Tag Manager Config
 GTM Container to import [https://github.com/65/free-scripts/blob/main/gtm/consent_mode_v2.json](https://github.com/65/free-scripts/blob/main/gtm/consent_mode_v2.json) 
