@@ -8,6 +8,7 @@
  * Author URI: https://sixfive.io
  */
 
+
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'wp_head', 'sf_wp_head_uc', 9 );
