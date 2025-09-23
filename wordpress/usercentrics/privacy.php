@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Privacy Plugin
+ * Plugin Name: Usercentrics Privacy Plugin
  * Plugin URI: https://sixfive.io
- * Description: MU plugin
+ * Description: For use with Termageddon + Usercentrics + Google Tag Manager Consent Mode v2
  * Version: 1.0.1
- * Author: SixFive
+ * Author: SixFive Pty Ltd
  * Author URI: https://sixfive.io
  */
 
