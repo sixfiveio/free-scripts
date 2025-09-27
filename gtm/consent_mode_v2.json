@@ -1,6 +1,6 @@
 {
     "exportFormatVersion": 2,
-    "exportTime": "2025-07-22 09:39:54",
+    "exportTime": "2025-09-27 14:09:20",
     "containerVersion": {
         "path": "accounts/6304467255/containers/225221087/versions/0",
         "accountId": "6304467255",
@@ -281,6 +281,61 @@
                 "consentSettings": {
                     "consentStatus": "NOT_SET"
                 }
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "tagId": "31",
+                "name": "Facebook Pixel",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<!-- Facebook Pixel Code -->\n<script>\n!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?\nn.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;\nn.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;\nt.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,\ndocument,'script','https://connect.facebook.net/en_US/fbevents.js');\n\nfbq('init', '{{Facebook Pixel ID}}');\nfbq('set','agent','tmgoogletagmanager', '{{Facebook Pixel ID}}');\nfbq('track', \"PageView\");\n</script>\n<noscript><img height=\"1\" width=\"1\" style=\"display:none\"\nsrc=\"https://www.facebook.com/tr?id={{Facebook Pixel ID}}&ev=PageView&noscript=1\"\n/></noscript>\n<!-- End Facebook Pixel Code -->"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1758011395402",
+                "firingTriggerId": [
+                    "30"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "tagId": "34",
+                "name": "LinkedIn Insight Tag",
+                "type": "bzi",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "id",
+                        "value": "{{LinkedIn Insight Tag ID}}"
+                    }
+                ],
+                "fingerprint": "1758009516045",
+                "firingTriggerId": [
+                    "27"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
             }
         ],
         "trigger": [
@@ -288,7 +343,7 @@
                 "accountId": "6304467255",
                 "containerId": "225221087",
                 "triggerId": "18",
-                "name": "Consent - Google Analytics",
+                "name": "Consent - Google Analytics 4",
                 "type": "CUSTOM_EVENT",
                 "customEventFilter": [
                     {
@@ -314,7 +369,7 @@
                             {
                                 "type": "TEMPLATE",
                                 "key": "arg0",
-                                "value": "{{dlv - Consent Status - Google Analytics}}"
+                                "value": "{{dlv - Consent Status - Google Analytics 4}}"
                             },
                             {
                                 "type": "TEMPLATE",
@@ -324,7 +379,7 @@
                         ]
                     }
                 ],
-                "fingerprint": "1752839765502"
+                "fingerprint": "1756883736362"
             },
             {
                 "accountId": "6304467255",
@@ -367,6 +422,90 @@
                     }
                 ],
                 "fingerprint": "1752839765502"
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "triggerId": "27",
+                "name": "Consent - LinkedIn Insight",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "consent_status"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{dlv - Consent Status - LinkedIn Insight Tag}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1758009547863"
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "triggerId": "30",
+                "name": "Consent - Facebook Pixel",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "consent_status"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{dlv - Consent Status - Facebook Pixel}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1758009317011"
             }
         ],
         "variable": [
@@ -408,7 +547,7 @@
                 "accountId": "6304467255",
                 "containerId": "225221087",
                 "variableId": "17",
-                "name": "dlv - Consent Status - Google Analytics",
+                "name": "dlv - Consent Status - Google Analytics 4",
                 "type": "v",
                 "parameter": [
                     {
@@ -429,10 +568,10 @@
                     {
                         "type": "TEMPLATE",
                         "key": "name",
-                        "value": "Google Analytics"
+                        "value": "Google Analytics 4"
                     }
                 ],
-                "fingerprint": "1752839765501",
+                "fingerprint": "1756883729659",
                 "formatValue": {}
             },
             {
@@ -482,9 +621,100 @@
                 ],
                 "fingerprint": "1752839765579",
                 "formatValue": {}
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "variableId": "28",
+                "name": "dlv - Consent Status - LinkedIn Insight Tag",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "defaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "LinkedIn Insight Tag"
+                    }
+                ],
+                "fingerprint": "1758009222758",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "variableId": "29",
+                "name": "dlv - Consent Status - Facebook Pixel",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "Facebook Pixel"
+                    }
+                ],
+                "fingerprint": "1758009255926",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "variableId": "32",
+                "name": "Facebook Pixel ID",
+                "type": "c",
+                "notes": "Find this in your Facebook Pixel code\nfbq('init', '1234123412341234');",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "1234123412341234"
+                    }
+                ],
+                "fingerprint": "1758009409333",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "variableId": "33",
+                "name": "LinkedIn Insight Tag ID",
+                "type": "c",
+                "notes": "Visit your LinkedIn ads account to obtain your Insight tag ID at https://www.linkedin.com/ad/",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "1234123123"
+                    }
+                ],
+                "fingerprint": "1758009485266",
+                "formatValue": {}
             }
         ],
-        "fingerprint": "1753177194086",
+        "fingerprint": "1758982160347",
         "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6304467255/containers/225221087/versions/0?apiLink=version",
         "customTemplate": [
             {
