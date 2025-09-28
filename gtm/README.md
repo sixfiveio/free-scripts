@@ -42,7 +42,7 @@ If you use Wordpress we recommend [GTM4WP by Thomas Geiger](https://wordpress.or
 
 If you use Wordpress we have bundled together the code into a [Must Use plugin 'privacy.php'](https://github.com/sixfiveio/free-scripts/tree/main/wordpress/usercentrics) download this and upload it into your /wp-content/mu-plugins directory. 
 
-Just ** Above** the <body> part of the GTM script insert the following, this allows UserCentrics to fire before GTM and allows UserCentrics to have visibility and control of other javascript. 
+Just ** Above** the &lt;body%gt; part of the GTM script insert the following, this allows UserCentrics to fire before GTM and allows UserCentrics to have visibility and control of other javascript. 
 ```
 <link rel="preconnect" href="//privacy-proxy.usercentrics.eu"> <link rel="preload" href="//privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js" as="script"> 
 <script type="application/javascript" src="https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js"></script>
