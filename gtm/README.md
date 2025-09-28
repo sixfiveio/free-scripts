@@ -30,9 +30,15 @@ Go to Variables and enter the real IDs for:
 Publish the container
 
 ## Website Configuration
-Pop the GTM embed code on to your website according to instructions. 
+
+### Google Tag Manager 
+Pop the GTM embed code on to your website according to instructions from tagmanager.google.com 
 
 If you use Wordpress we recommend [GTM4WP by Thomas Geiger](https://wordpress.org/plugins/duracelltomi-google-tag-manager/) 
+
+### User Centrics scripts
+
+If you use Wordpress we have bundled together the code into a [Must Use plugin 'privacy.php'](https://github.com/sixfiveio/free-scripts/tree/main/wordpress/usercentrics) download this and upload it into your /wp-content/mu-plugins directory. 
 
 Just ** Above** your GTM script insert the following, this allows UserCentrics to fire before GTM and alows UserCentrics to have visibility and control of other javascript. 
 ```
