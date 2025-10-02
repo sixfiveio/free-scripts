@@ -26,15 +26,23 @@ GTM Container to import [https://github.com/65/free-scripts/blob/main/gtm/consen
 Go to Variables and enter the real IDs for: 
 - GA4 Data Stream from [analytics.google.com](https://analytics.google.com) 
 - Microsoft Clarity Project ID from [clarity.microsoft.com](https://clarity.microsoft.com) 
-- UserCentrics Setting ID from the embed code in Termageddon 
+- UserCentrics Setting ID from the embed code in Termageddon
+- LinkedIn Pixel ID (if not using go to Tags and click Pause for the LinkedIn Tag)
+- Facebook Pixel ID (if not using go to Tags and click Pause for the Facebook Tag)
 Publish the container
 
 ## Website Configuration
-Pop the GTM embed code on to your website according to instructions. 
+
+### Google Tag Manager 
+Pop the GTM embed code on to your website according to instructions from tagmanager.google.com 
 
 If you use Wordpress we recommend [GTM4WP by Thomas Geiger](https://wordpress.org/plugins/duracelltomi-google-tag-manager/) 
 
-Just ** Above** your GTM script insert the following, this allows UserCentrics to fire before GTM and alows UserCentrics to have visibility and control of other javascript. 
+### User Centrics scripts
+
+If you use Wordpress we have bundled together the code into a [Must Use plugin 'privacy.php'](https://github.com/sixfiveio/free-scripts/tree/main/wordpress/usercentrics) download this and upload it into your /wp-content/mu-plugins directory. 
+
+Just ** Above** the &lt;body&gt; part of the GTM script insert the following, this allows UserCentrics to fire before GTM and allows UserCentrics to have visibility and control of other javascript. 
 ```
 <link rel="preconnect" href="//privacy-proxy.usercentrics.eu"> <link rel="preload" href="//privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js" as="script"> 
 <script type="application/javascript" src="https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js"></script>
