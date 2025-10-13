@@ -20,6 +20,13 @@ This script solves the problem by inspecting every iframe on the page and, if it
 
 ## 🚀 Installation & Usage
 
+* Download: Download the latest release ZIP file of this repository.
+* Customise: see section below 
+* Upload: Go to your WordPress Admin Dashboard -> Plugins -> Add New -> Upload Plugin.
+* Activate: Select the downloaded ZIP file and click "Install Now," then "Activate Plugin."
+
+The plugin is now active and the script has been added to your website's <head>.
+
 ### Configuration
 The key to this script's flexibility is the `allowedPrefixes` array.
 
