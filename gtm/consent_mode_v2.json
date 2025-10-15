@@ -1,6 +1,6 @@
 {
     "exportFormatVersion": 2,
-    "exportTime": "2025-10-15 06:29:40",
+    "exportTime": "2025-10-15 07:11:58",
     "containerVersion": {
         "path": "accounts/6304467255/containers/225221087/versions/0",
         "accountId": "6304467255",
@@ -567,7 +567,7 @@
                             {
                                 "type": "TEMPLATE",
                                 "key": "arg0",
-                                "value": "{{dlv - Consent Status - Twitter Pixel}}"
+                                "value": "{{dlv - Consent Status - Twitter Analytics}}"
                             },
                             {
                                 "type": "TEMPLATE",
@@ -789,7 +789,7 @@
                 "accountId": "6304467255",
                 "containerId": "225221087",
                 "variableId": "35",
-                "name": "dlv - Consent Status - Twitter Pixel",
+                "name": "dlv - Consent Status - Twitter Analytics",
                 "type": "v",
                 "parameter": [
                     {
@@ -805,10 +805,10 @@
                     {
                         "type": "TEMPLATE",
                         "key": "name",
-                        "value": "Twitter"
+                        "value": "Twitter Analytics"
                     }
                 ],
-                "fingerprint": "1760509721560",
+                "fingerprint": "1760512308787",
                 "formatValue": {}
             },
             {
@@ -829,7 +829,7 @@
                 "formatValue": {}
             }
         ],
-        "fingerprint": "1760509780251",
+        "fingerprint": "1760512318155",
         "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6304467255/containers/225221087/versions/0?apiLink=version",
         "customTemplate": [
             {
