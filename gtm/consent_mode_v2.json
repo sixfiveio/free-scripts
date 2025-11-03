@@ -1,6 +1,6 @@
 {
     "exportFormatVersion": 2,
-    "exportTime": "2025-10-15 07:11:58",
+    "exportTime": "2025-11-03 05:01:23",
     "containerVersion": {
         "path": "accounts/6304467255/containers/225221087/versions/0",
         "accountId": "6304467255",
@@ -360,6 +360,41 @@
                 ],
                 "tagFiringOption": "ONCE_PER_EVENT",
                 "paused": true,
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "tagId": "40",
+                "name": "GA4 Event",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "{{Event}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{GA4 Data Stream}}"
+                    }
+                ],
+                "fingerprint": "1762145984304",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
                 "monitoringMetadata": {
                     "type": "MAP"
                 },
@@ -829,7 +864,33 @@
                 "formatValue": {}
             }
         ],
-        "fingerprint": "1760512318155",
+        "builtInVariable": [
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "type": "SCROLL_DEPTH_THRESHOLD",
+                "name": "Scroll Depth Threshold"
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "type": "SCROLL_DEPTH_UNITS",
+                "name": "Scroll Depth Units"
+            },
+            {
+                "accountId": "6304467255",
+                "containerId": "225221087",
+                "type": "SCROLL_DEPTH_DIRECTION",
+                "name": "Scroll Direction"
+            }
+        ],
+        "fingerprint": "1762146083400",
         "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6304467255/containers/225221087/versions/0?apiLink=version",
         "customTemplate": [
             {
