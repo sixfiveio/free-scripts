@@ -13,7 +13,7 @@ Optimal Script Loading: Preloads and inserts the necessary Usercentrics uc-block
 
 Termageddon Translation Support: Automatically configures Usercentrics to use custom translations hosted by Termageddon.
 
-GTM Consent Mode v2 Ready: Explicitly excludes the Google Tag Manager container script from Usercentrics' automatic blocking mechanism, enabling GTM to control consent mode and manage tags based on user choice.
+GTM Consent Mode v2 Ready: Explicitly excludes the Google Tag Manager container script from Usercentrics' automatic blocking mechanism, enabling GTM to control consent mode and manage tags based on user choice. [How to configure your GTM](https://github.com/sixfiveio/free-scripts/tree/main/gtm) 
 
 DoubleClick Ad (DFP) Support: Automatically modifies common DoubleClick Ad script handles (jquery_dfp and google_dfp) to include the required data-usercentrics attribute, ensuring ad scripts are only loaded after the necessary consent is given.
 
