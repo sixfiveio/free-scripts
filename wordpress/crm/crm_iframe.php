@@ -3,7 +3,7 @@
  * Plugin Name: Pass URL params to CRM forms and funnel links
  * Plugin URI: https://github.com/sixfiveio/free-scripts/tree/main/wordpress/crm
  * Description: Carries the visitor's landing URL parameters (gclid, fbclid, UTMs and any others) into embedded CRM form iframes and onto links to your funnel pages, so paid ad leads keep their attribution. Works with GoHighLevel, HubSpot, Salesforce Pardot and any CRM that embeds forms in an iframe.
- * Version: 2.0
+ * Version: 2.1
  * Author: SixFive Pty Ltd
  * Author URI: https://sixfive.io
  * License: MIT
@@ -46,6 +46,16 @@ function sf_passthrough_skip_params() {
 	) );
 }
 
+// Parameters that mark a visit as coming from an ad or campaign. A landing
+// with one of these replaces the set kept for the visit; a later page with
+// only other parameters (?tab=annual) never does. utm_* always counts.
+// Filter: sf_passthrough_tracking_params
+function sf_passthrough_tracking_params() {
+	return apply_filters( 'sf_passthrough_tracking_params', array(
+		'gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'ttclid', 'li_fat_id',
+	) );
+}
+
 // DO NOT alter after this line.
 
 add_action( 'wp_footer', 'sf_mu_wp_footer_ghl', 99 );
@@ -54,6 +64,7 @@ function sf_mu_wp_footer_ghl() {
 		'iframes' => array_values( sf_passthrough_iframe_prefixes() ),
 		'links'   => array_values( sf_passthrough_link_prefixes() ),
 		'skip'    => array_map( 'strtolower', array_values( sf_passthrough_skip_params() ) ),
+		'track'   => array_map( 'strtolower', array_values( sf_passthrough_tracking_params() ) ),
 	);
 	?>
 <script>
@@ -61,17 +72,24 @@ function sf_mu_wp_footer_ghl() {
 	/*
 	 * Capture: every parameter on the landing URL except WordPress's own.
 	 * Kept for this visit only (sessionStorage), so a reader who moves to a
-	 * second page before clicking still carries them. A later landing with
-	 * parameters replaces the set; a page with none never blanks it.
+	 * second page before clicking still carries them. A later landing with an
+	 * ad or campaign parameter replaces the set; a page with only other
+	 * parameters (?tab=annual) starts a set when there is none, and otherwise
+	 * leaves the stored one alone. A page with none never blanks it.
 	 */
 	var KEY = 'sf_passthrough';
 	var params = [];
+	var tracked = false;
 	new URLSearchParams(window.location.search).forEach(function (value, key) {
-		if (config.skip.indexOf(key.toLowerCase()) === -1 && value !== '') params.push([key, value]);
+		var k = key.toLowerCase();
+		if (config.skip.indexOf(k) !== -1 || value === '') return;
+		params.push([key, value]);
+		if (k.indexOf('utm_') === 0 || config.track.indexOf(k) !== -1) tracked = true;
 	});
 	try {
-		if (params.length) sessionStorage.setItem(KEY, JSON.stringify(params));
-		else params = JSON.parse(sessionStorage.getItem(KEY) || '[]');
+		var stored = JSON.parse(sessionStorage.getItem(KEY) || '[]');
+		if (stored.length && !tracked) params = stored;
+		else if (params.length) sessionStorage.setItem(KEY, JSON.stringify(params));
 	} catch (e) { /* storage blocked: use this page's own URL only */ }
 	if (!params.length) return;
 

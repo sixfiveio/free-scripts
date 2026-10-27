@@ -24,7 +24,8 @@ Either way:
 - **Captures every parameter on the landing URL**, except WordPress's own (`p`, `s`, `preview` and similar).
 - **Adds them to iframes** whose `src` starts with one of your iframe prefixes, including forms that load late or are lazy-loaded.
 - **Adds them to links** whose URL starts with one of your link prefixes, including links added after the page loads.
-- **Keeps them for the whole visit**, so a reader who clicks through to a second page before converting still carries them. Stored in `sessionStorage` only, and gone when the tab closes.
+- **Keeps them for the whole visit**, so a reader who clicks through to a second page before converting still carries them. Stored in `sessionStorage` only, and gone when the tab closes. A page opened in a new tab starts without them.
+- **Doesn't let an internal link wipe out the ad.** Only a landing with an ad or campaign parameter (`utm_*`, `gclid`, `fbclid`, `msclkid` and the others in `sf_passthrough_tracking_params`) replaces what's kept. A later page like `/pricing/?tab=annual` leaves the ad's parameters in place.
 - **Never duplicates a parameter.** An incoming value replaces the same-named one already on the iframe or link (the ad's `utm_source` beats a CTA's `utm_source=blog`), and everything else on it is kept.
 - **Sends nothing anywhere.** It only rewrites URLs on your own page.
 
@@ -64,7 +65,15 @@ add_filter( 'sf_passthrough_link_prefixes', function ( $prefixes ) {
 } );
 ```
 
-`sf_passthrough_skip_params` changes which parameters are never passed on.
+`sf_passthrough_skip_params` changes which parameters are never passed on. `sf_passthrough_tracking_params` changes which ones count as an ad or campaign landing (`utm_*` always does).
+
+The default prefixes match any domain starting that way, so `https://go.` also matches a third party's `go.` links. For a tighter fit, replace them with your own domains:
+
+```php
+add_filter( 'sf_passthrough_link_prefixes', function () {
+    return array( 'https://go.yourdomain.com/', 'https://lp.yourdomain.com/' );
+} );
+```
 
 ## 🧪 Checking it works
 
