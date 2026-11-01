@@ -15,6 +15,8 @@ Termageddon Translation Support: Automatically configures Usercentrics to use cu
 
 GTM Consent Mode v2 Ready: Explicitly excludes the Google Tag Manager container script from Usercentrics' automatic blocking mechanism, enabling GTM to control consent mode and manage tags based on user choice. [How to configure your GTM](https://github.com/sixfiveio/free-scripts/tree/main/gtm) 
 
+TCF stub (optional): loads the IAB TCF stub (`tcf/stub.js`), which ad scripts need when TCF is switched on in the Usercentrics tag. A site without programmatic advertising can skip the request by adding `define( 'SF_UC_TCF_STUB', false );` to `wp-config.php`. It loads by default, so existing sites are unchanged.
+
 DoubleClick Ad (DFP) Support: Automatically modifies common DoubleClick Ad script handles (jquery_dfp and google_dfp) to include the required data-usercentrics attribute, ensuring ad scripts are only loaded after the necessary consent is given.
 
 ## ⚙️ Installation
