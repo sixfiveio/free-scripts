@@ -3,7 +3,7 @@
  * Plugin Name: Pass URL params to CRM forms and funnel links
  * Plugin URI: https://github.com/sixfiveio/free-scripts/tree/main/wordpress/crm
  * Description: Carries the visitor's landing URL parameters (gclid, fbclid, UTMs and any others) into embedded CRM form iframes and onto links to your funnel pages, so paid ad leads keep their attribution. Works with GoHighLevel, HubSpot, Salesforce Pardot and any CRM that embeds forms in an iframe.
- * Version: 2.1
+ * Version: 2.2
  * Author: SixFive Pty Ltd
  * Author URI: https://sixfive.io
  * License: MIT
@@ -56,6 +56,19 @@ function sf_passthrough_tracking_params() {
 	) );
 }
 
+// Values taken from the page the visitor is on when the form or link is tagged,
+// added alongside the URL parameters, as parameter name => source. Sources:
+// 'path' (/contact/), 'url' (the full address), 'title' (the page title) and
+// 'referrer' (the page before, empty for a direct visit, which is then left
+// off). Always the current page, never the one the visit landed on. A value
+// here replaces a URL parameter of the same name. Empty by default.
+// Filter: sf_passthrough_page_params
+function sf_passthrough_page_params() {
+	return apply_filters( 'sf_passthrough_page_params', array(
+		// e.g. 'page_path' => 'path', 'source_url' => 'url',
+	) );
+}
+
 // DO NOT alter after this line.
 
 add_action( 'wp_footer', 'sf_mu_wp_footer_ghl', 99 );
@@ -65,7 +78,13 @@ function sf_mu_wp_footer_ghl() {
 		'links'   => array_values( sf_passthrough_link_prefixes() ),
 		'skip'    => array_map( 'strtolower', array_values( sf_passthrough_skip_params() ) ),
 		'track'   => array_map( 'strtolower', array_values( sf_passthrough_tracking_params() ) ),
+		'page'    => array(),
 	);
+	foreach ( (array) sf_passthrough_page_params() as $name => $source ) {
+		if ( is_string( $name ) && '' !== $name && in_array( $source, array( 'path', 'url', 'title', 'referrer' ), true ) ) {
+			$config['page'][] = array( $name, $source );
+		}
+	}
 	?>
 <script>
 (function (config) {
@@ -91,6 +110,20 @@ function sf_mu_wp_footer_ghl() {
 		if (stored.length && !tracked) params = stored;
 		else if (params.length) sessionStorage.setItem(KEY, JSON.stringify(params));
 	} catch (e) { /* storage blocked: use this page's own URL only */ }
+
+	// Values from the page itself, read now, not kept for the visit.
+	var pageValues = {
+		path: window.location.pathname,
+		url: window.location.href,
+		title: document.title,
+		referrer: document.referrer
+	};
+	config.page.forEach(function (p) {
+		var value = pageValues[p[1]];
+		if (!value) return;
+		params = params.filter(function (q) { return q[0] !== p[0]; });
+		params.push([p[0], value]);
+	});
 	if (!params.length) return;
 
 	function starts(value, prefixes) {

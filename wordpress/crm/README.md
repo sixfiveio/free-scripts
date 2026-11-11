@@ -75,6 +75,22 @@ add_filter( 'sf_passthrough_link_prefixes', function () {
 } );
 ```
 
+### Sending details about the page
+
+Some CRMs want to know which page the form was filled in on, as well as where the visitor came from. `sf_passthrough_page_params` adds values from the page itself, as parameter name => source:
+
+```php
+add_filter( 'sf_passthrough_page_params', function ( $map ) {
+    $map['page_path']  = 'path';      // /contact/
+    $map['source_url'] = 'url';       // the full address, query string included
+    $map['page_title'] = 'title';     // the page's <title>
+    $map['referrer']   = 'referrer';  // the page before; left off on a direct visit
+    return $map;
+} );
+```
+
+Name the parameters to match the fields your CRM form expects. These are read from the page the visitor is on when the form loads, not the page they landed on, and are never kept for the visit. They go on forms even when the visit has no URL parameters, and they replace a URL parameter of the same name. Off by default.
+
 ## 🧪 Checking it works
 
 Open any page on your site with test parameters, for example `https://yoursite.com/contact/?gclid=TEST123&utm_source=test`, then inspect the embedded form (its `src`) or a funnel link (its `href`). Both should end with `gclid=TEST123&utm_source=test`.
